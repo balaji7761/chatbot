@@ -488,8 +488,7 @@ if user_input:
         
             response = dataset_answer
         else:
-            response = answer_question(user_input, context)
-
+            response = "Ask question related to Rhapsody"
         st.write(f"Answer: {response}")
 
         # Asking if the user needs suggestion questions
