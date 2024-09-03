@@ -1,13 +1,14 @@
 import streamlit as st
 from transformers import pipeline
 import pandas as pd
-import json
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Initialize the question-answering pipeline using a pretrained model
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
-# Define the dataset
-data={
+# Sample dataset of questions and answers
+data = {
   "data": [
     {
       "question": "What is IBM Rational Rhapsody?",
@@ -434,15 +435,22 @@ data={
 }
 
 
-
-# Extract data from the dataset
-data_list = data["data"]
-
 # Load the dataset into a DataFrame
-df = pd.DataFrame(data_list)
+df = pd.DataFrame(data["data"])
 
 # Create a context from your dataset
 context = " ".join(df["answer"])
+
+# Vectorize the questions for similarity check
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(df["question"])
+
+# Function to find similar questions
+def find_similar_questions(user_question, top_n=3):
+    user_question_vec = vectorizer.transform([user_question])
+    similarities = cosine_similarity(user_question_vec, X).flatten()
+    top_indices = similarities.argsort()[-top_n:][::-1]
+    return [(df["question"].iloc[i], df["answer"].iloc[i]) for i in top_indices]
 
 # Function to answer questions using the pretrained model
 def answer_question(question, context):
@@ -462,4 +470,17 @@ if user_input:
         st.write("Hello! How can I help you with Rhapsody today?")
     else:
         response = answer_question(user_input, context)
-        st.write(response)
+        st.write(f"Answer: {response}")
+
+        # Asking if user needs suggestion questions
+        suggest = st.radio("Do you need any suggestion questions?", ("No", "Yes"))
+
+        if suggest == "Yes":
+            similar_questions = find_similar_questions(user_input)
+            question_choices = [q for q, _ in similar_questions]
+            selected_question = st.selectbox("Select a question:", question_choices)
+
+            if selected_question:
+                # Find the answer corresponding to the selected question
+                answer = dict(similar_questions)[selected_question]
+                st.write(f"Answer: {answer}")
