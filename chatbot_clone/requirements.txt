@@ -7,3 +7,4 @@ nltk
 tensorflow
 scikit-learn
 tf-keras
+json
