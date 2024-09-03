@@ -64,7 +64,7 @@ user_input = st.text_input("Ask a question about Rhapsody:")
 
 # Handle different types of user input
 if user_input:
-    if user_input.lower() in ["hi", "hello", "hey", "Bye"]:
+    if user_input.lower() in ["hi", "hello", "hey"]:
         st.write("Hello! How can I help you with Rhapsody today?")
     else:
         # Check for a similar question above the threshold
