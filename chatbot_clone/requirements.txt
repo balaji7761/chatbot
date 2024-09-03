@@ -2,5 +2,7 @@ streamlit
 transformers
 pandas
 numpy
-matplotlib.pyplot
+matplotlib
 nltk
+tensorflow
+scikit-learn
