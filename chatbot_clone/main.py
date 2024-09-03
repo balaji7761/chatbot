@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
 # Sample dataset of questions and answers
-data = {
+data ={
   "data": [
     {
       "question": "What is IBM Rational Rhapsody?",
@@ -469,10 +469,16 @@ if user_input:
     if user_input.lower() in ["hi", "hello", "hey"]:
         st.write("Hello! How can I help you with Rhapsody today?")
     else:
-        response = answer_question(user_input, context)
+        # Check if the question matches exactly with any in the dataset
+        exact_match = df[df['question'].str.lower() == user_input.lower()]
+        if not exact_match.empty:
+            response = exact_match['answer'].values[0]
+        else:
+            response = answer_question(user_input, context)
+
         st.write(f"Answer: {response}")
 
-        # Asking if user needs suggestion questions
+        # Asking if the user needs suggestion questions
         suggest = st.radio("Do you need any suggestion questions?", ("No", "Yes"))
 
         if suggest == "Yes":
