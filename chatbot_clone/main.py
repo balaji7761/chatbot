@@ -1,31 +1,23 @@
 import streamlit as st
 from transformers import pipeline
 import pandas as pd
+import json
 
 # Initialize the question-answering pipeline using a pretrained model
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
-# Sample dataset of questions and answers
-data = {
-    "Question": [
-        "What is Rhapsody?",
-        "How do I create a new project in Rhapsody?",
-        "What are the benefits of using Rhapsody?",
-        "How to generate code from a model in Rhapsody?"
-    ],
-    "Answer": [
-        "Rhapsody is a visual modeling tool for designing complex systems.",
-        "To create a new project in Rhapsody, go to File > New Project and follow the wizard.",
-        "The benefits of using Rhapsody include model-based design, collaboration features, and code generation.",
-        "To generate code, click on Tools > Generate Code and select the model elements."
-    ]
-}
+# Define the dataset
+with open('q.json') as f:
+    data = json.load(f)
+
+# Extract data from the dataset
+data_list = data["data"]
 
 # Load the dataset into a DataFrame
-df = pd.DataFrame(data)
+df = pd.DataFrame(data_list)
 
 # Create a context from your dataset
-context = " ".join(df["Answer"])
+context = " ".join(df["answer"])
 
 # Function to answer questions using the pretrained model
 def answer_question(question, context):
