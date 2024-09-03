@@ -1,0 +1,6 @@
+streamlit
+transformers
+pandas
+numpy
+matplotlib.pyplot
+nltk
