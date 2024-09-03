@@ -7,7 +7,7 @@ import json
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
 # Define the dataset
-with open('q.json') as f:
+with open('/mount/src/chatbot/chatbot_clone/q.json') as f:
     data = json.load(f)
 
 
