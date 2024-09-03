@@ -43,6 +43,13 @@ def get_most_similar_answer(user_question, threshold=0.5):
         return df["answer"].iloc[best_match_index], df["question"].iloc[best_match_index], best_similarity
     return None, None, best_similarity
 
+# Function to find similar questions to the user's input
+def find_similar_questions(user_question, top_n=3):
+    user_question_vec = vectorizer.transform([user_question])
+    similarities = cosine_similarity(user_question_vec, X).flatten()
+    top_indices = similarities.argsort()[-top_n:][::-1]
+    return [(df["question"].iloc[i], df["answer"].iloc[i]) for i in top_indices if similarities[i] > 0]
+
 # Function to answer questions using the pretrained model
 def answer_question(question, context):
     try:
@@ -77,9 +84,12 @@ if user_input:
         if suggest == "Yes":
             similar_questions = find_similar_questions(user_input)
             question_choices = [q for q, _ in similar_questions]
-            selected_question = st.selectbox("Select a question:", question_choices)
+            if question_choices:
+                selected_question = st.selectbox("Select a question:", question_choices)
 
-            if selected_question:
-                # Find the answer corresponding to the selected question
-                answer = dict(similar_questions)[selected_question]
-                st.write(f"Answer: {answer}")
+                if selected_question:
+                    # Find the answer corresponding to the selected question
+                    answer = dict(similar_questions)[selected_question]
+                    st.write(f"Answer: {answer}")
+            else:
+                st.write("No similar questions found.")
