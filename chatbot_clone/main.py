@@ -101,7 +101,7 @@ if user_input:
         dataset_answer, matched_question, similarity = get_most_similar_answer(user_input, threshold=0.5)
         
         if dataset_answer:
-            st.write(f"{current_path}")
+            
             response = dataset_answer
         else:
             response = "Ask question related to Rhapsody"
