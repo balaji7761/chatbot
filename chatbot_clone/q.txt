@@ -198,44 +198,44 @@
     },
     {
       "question": "Which SysML diagram type is best suited for modeling system behaviors in response to external and internal events?",
-      "answer": " State Machine Diagram."
+      "answer": "Â State Machine Diagram."
     },
     {
       "question": "Customizing Rhapsody for specific project needs can lead to which of the following outcomes?",
-      "answer": " Enhanced productivity through tailored modeling environments."
+      "answer": "Â Enhanced productivity through tailored modeling environments."
     },
     {
-      "question": "In a state machine diagram, what does a ‘transition’ represent?",
-      "answer": " A change in the state of an object in response to an event"
+      "question": "In a state machine diagram, what does a Â‘transitionÂ’ represent?",
+      "answer": "Â A change in the state of an object in response to an event"
     },
     {
       "question": "Using Rhapsody's RELM integration can help teams achieve what outcome?",
-      "answer": " Improve traceability and impact analysis for model changes."
+      "answer": "Â Improve traceability and impact analysis for model changes."
     },
     {
       "question": "How can Rhapsody's integration with third-party analysis tools benefit a systems engineering project?",
-      "answer": " Enhancing model validation and verification processes"
+      "answer": "Â Enhancing model validation and verification processes"
 
     },
     {
       "question": "When setting up a new project in Rhapsody, what is a critical step for ensuring model consistency across different team members?",
-      "answer": " Defining a clear set of naming conventions."
+      "answer": "Â Defining a clear set of naming conventions."
     },
     {
       "question": "For modeling sequential interactions in a system, which SysML diagram provides the most clarity?",
-      "answer": " Sequence Diagram."
+      "answer": "Â Sequence Diagram."
     },
     {
       "question": "Which file format is commonly edited to customize profiles within Rhapsody?",
-      "answer": " .xml."
+      "answer": "Â .xml."
     },
     {
       "question": "In IBM Rhapsody, which feature allows for the creation of custom profiles that can extend the modeling capabilities of the tool??",
-      "answer": " The Profile Toolkit"
+      "answer": "Â The Profile Toolkit"
     },
     {
       "question": "What feature in Rhapsody allows for the visualization of the dynamic behavior of a system through simulations?",
-      "answer": " Test Conductor."
+      "answer": "Â Test Conductor."
     },
     {
       "question": "How can I optimize code generation settings in Rhapsody?",
@@ -243,7 +243,7 @@
     },
     {
       "question": "How do I handle errors in Rhapsody simulations?",
-      "answer": "During simulations, errors can be handled by checking the error log, reviewing the model’s execution flow, and adjusting model elements to correct issues identified during the simulation."
+      "answer": "During simulations, errors can be handled by checking the error log, reviewing the modelÂ’s execution flow, and adjusting model elements to correct issues identified during the simulation."
     },
     {
       "question": "What is the purpose of the activity diagram in Rhapsody?",
