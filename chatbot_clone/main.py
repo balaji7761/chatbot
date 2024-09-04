@@ -14,24 +14,45 @@ current_path = os.path.abspath(__file__)
 # Initialize the question-answering pipeline using a pretrained model
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
-# Sample dataset of questions and answers
+# Sample dataset of questions and answer
 
+# Step 1: Read the content from the text file
 try:
-    # Replace 'path_to_your_file.json' with the correct path
-    with open('/mount/src/chatbot/chatbot_clone/q.json', 'r') as f:
-        data = json.load(f)
-        print("Data loaded successfully:", data)
+    # Replace 'path_to_your_file.txt' with the actual path to your .txt file
+    with open('/mount/src/chatbot/chatbot_clone/q.txt', 'r') as file:
+        # Read the entire content of the file as a string
+        content = file.read()
+        print("File content read successfully.")
+
+    # Step 2: Convert the content to a JSON object
+    try:
+        data = json.loads(content)  # Parses the string to a JSON object (dict or list)
+        print("JSON data loaded successfully.")
+
+        # Step 3: Extract "question" and "answer" into x and y variables
+        if "data" in data and isinstance(data["data"], list):
+            # Extract questions and answers into separate lists
+            x = [item["question"] for item in data["data"]]
+            y = [item["answer"] for item in data["data"]]
+
+            # Step 4: Create a DataFrame with 'question' as x and 'answer' as y
+            df = pd.DataFrame({"question": x, "answer": y})
+            print("DataFrame created successfully:")
+            print(df)
+        else:
+            print("Error: The key 'data' is not present or not formatted correctly.")
+    except json.JSONDecodeError as e:
+        print("Error: Failed to decode JSON. Please check the content of the file:", e)
+
 except FileNotFoundError:
-    print("Error: The file was not found.")
-except json.JSONDecodeError:
-    print("Error: Failed to decode JSON. Please check the file format.")
+    print("Error: The specified file was not found.")
 except Exception as e:
     print(f"An unexpected error occurred: {e}")
 
 
 
 # Load the dataset into a DataFrame
-df = pd.DataFrame(data["data"])
+# df = pd.DataFrame(data["data"])
 
 # Create a context from your dataset
 context = " ".join(df["answer"])
