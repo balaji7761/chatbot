@@ -8,7 +8,7 @@ import os
 # Get the absolute path of the current script
 current_path = os.path.abspath(__file__)
 
-print(f"The path of the running program is: {current_path}")
+
 
 
 # Initialize the question-answering pipeline using a pretrained model
@@ -492,7 +492,7 @@ if user_input:
         dataset_answer, matched_question, similarity = get_most_similar_answer(user_input, threshold=0.5)
         
         if dataset_answer:
-            st.write(f"Matched Question: {matched_question} (Similarity: {similarity:.2f})")
+            st.write(f"{current_path}")
             response = dataset_answer
         else:
             response = "Ask question related to Rhapsody"
