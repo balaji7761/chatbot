@@ -485,7 +485,7 @@ if user_input:
         dataset_answer, matched_question, similarity = get_most_similar_answer(user_input, threshold=0.5)
         
         if dataset_answer:
-            
+            st.write(f"Matched Question: {matched_question} (Similarity: {similarity:.2f})")
             response = dataset_answer
         else:
             response = "Ask question related to Rhapsody"
