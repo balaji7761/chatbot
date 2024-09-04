@@ -15,8 +15,19 @@ current_path = os.path.abspath(__file__)
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
 # Sample dataset of questions and answers
-with open('/mount/src/chatbot/chatbot_clone/q.json') as f:
-  data = json.load(f)
+
+try:
+    # Replace 'path_to_your_file.json' with the correct path
+    with open('/mount/src/chatbot/chatbot_clone/q.json', 'r') as f:
+        data = json.load(f)
+        print("Data loaded successfully:", data)
+except FileNotFoundError:
+    print("Error: The file was not found.")
+except json.JSONDecodeError:
+    print("Error: Failed to decode JSON. Please check the file format.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+
 
 
 # Load the dataset into a DataFrame
