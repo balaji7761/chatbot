@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import os
-
+import json
 # Get the absolute path of the current script
 current_path = os.path.abspath(__file__)
 
