@@ -3,6 +3,13 @@ from transformers import pipeline
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import os
+
+# Get the absolute path of the current script
+current_path = os.path.abspath(__file__)
+
+print(f"The path of the running program is: {current_path}")
+
 
 # Initialize the question-answering pipeline using a pretrained model
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
