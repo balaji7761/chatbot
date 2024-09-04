@@ -14,11 +14,8 @@ current_path = os.path.abspath(__file__)
 # Initialize the question-answering pipeline using a pretrained model
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
-# Sample dataset of questions and answer
-
 # Step 1: Read the content from the text file
 try:
-    # Replace 'path_to_your_file.txt' with the actual path to your .txt file
     with open('/mount/src/chatbot/chatbot_clone/q.txt', 'r') as file:
         # Read the entire content of the file as a string
         content = file.read()
