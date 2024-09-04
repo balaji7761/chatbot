@@ -446,7 +446,7 @@ vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(df["question"])
 
 # Function to find the most similar question above a similarity threshold
-def get_most_similar_answer(user_question, threshold=0.5):
+def get_most_similar_answer(user_question, threshold=0.7):
     user_question_vec = vectorizer.transform([user_question])
     similarities = cosine_similarity(user_question_vec, X).flatten()
     # Find the index of the most similar question
