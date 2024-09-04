@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
 # Sample dataset of questions and answers
-with open('\q.json') as f:    
+with open('/q.json') as f:    
   data = json.load(f)
 
 # Load the dataset into a DataFrame
