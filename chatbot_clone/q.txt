@@ -759,7 +759,7 @@
   },
   {
     "question": "Who is neha?",
-    "answer": "Neha is a software developer whos working in ubs."
+    "answer": "Neha is a software developer whos working in ubs and also balu and nehss are best frndssss."
   }
 
   ]
